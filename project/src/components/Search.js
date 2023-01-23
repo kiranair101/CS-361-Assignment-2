@@ -1,12 +1,32 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import { json } from 'react-router-dom';
 
 
 export default function Search(){
     const {register, handleSubmit, errors} = useForm()
     
-    const onSubmit = (formValues) => {
+    const onSubmit = async (formValues) => {
         console.log(formValues)
+        
+        let parameters = []
+        let url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?'
+
+        for (const parameter in formValues){
+            if(formValues[parameter] !== ''){
+                url = url + `${parameter}=${formValues[parameter]}&`
+            }
+        }
+
+        console.log(url)
+
+        try{
+            const response = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician')
+            const data = await response.json()
+            console.log(data)
+        } catch(error){
+            console.log(error)
+        }
     }
 
     return(
