@@ -14,7 +14,9 @@ export default function Search(){
             race: "",
             atk: "",
             def: "",
-            level: ""
+            level: "",
+            archetype: "",
+            attribute: ""
         })
     }
 
@@ -40,6 +42,8 @@ export default function Search(){
             setValue("atk", data['data'][0]['atk'])
             setValue("def", data['data'][0]['def'])
             setValue("level", data['data'][0]['level'])
+            setValue("attribute", data['data'][0]['attribute'])
+            setValue("archetype", data['data'][0]['archetype'])
         } catch(error){
             console.log(error)
             alert("No card matches your input. Please adjust your search criteria.")
@@ -51,11 +55,13 @@ export default function Search(){
     return(
         <form onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
             <input type="text" placeholder="Name" {...register("name")}/>
+            <input type="number" placeholder="Level" {...register("level")}/>
             <input type="text" placeholder="Type" {...register("type")}/>
+            <input type="text" placeholder="Attribute" {...register("attribute")}/>
             <input type="text" placeholder="Race" {...register("race")}/>
+            <input type="text" placeholder="Archetype" {...register("archetype")}/>
             <input type="number" placeholder="Attack" {...register("atk")}/>
             <input type="number" placeholder="Defense" {...register("def")}/>
-            <input type="number" placeholder="Level" {...register("level")}/>
             <input type="submit"/>
             <input type="reset"/>
         </form>

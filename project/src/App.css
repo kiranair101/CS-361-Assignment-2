@@ -1,10 +1,11 @@
 .App {
   text-align: center;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 body {
   margin: 0;
-  background-color: hsl(0, 0%, 98%);
+  background-color: hsl(256, 27%, 39%);
   color: #333;
   font: 100% / normal sans-serif;
 }
@@ -14,6 +15,25 @@ main {
   padding: 4rem 0;
   width: 90%;
   max-width: 60rem;
+}
+
+footer {
+  color: white;
+}
+
+h2 {
+  font-size: 3rem;
+  color: white;
+}
+
+.Navigation {
+  background-color: white;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+a {
+  padding: 2rem;
 }
 
 form {
@@ -27,11 +47,9 @@ form {
   gap: 2rem;
 }
 
-.full-width {
-  grid-column: span 2;
-}
-
-.rowC {
-  display:flex; 
-  flex-direction:row;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  padding: 2rem;
 }
