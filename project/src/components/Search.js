@@ -4,40 +4,60 @@ import { json } from 'react-router-dom';
 
 
 export default function Search(){
-    const {register, handleSubmit, errors} = useForm()
+    const {register, handleSubmit, reset, setValue} = useForm()
     
+    const onReset = async () => {
+        document.getElementById("Card_Image").src="Yugioh_Card_Back.png"
+        reset({
+            name: "",
+            type: "",
+            race: "",
+            atk: "",
+            def: "",
+            level: ""
+        })
+    }
+
     const onSubmit = async (formValues) => {
         console.log(formValues)
-        
-        let parameters = []
-        let url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?'
 
+        let url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?'
         for (const parameter in formValues){
             if(formValues[parameter] !== ''){
                 url = url + `${parameter}=${formValues[parameter]}&`
             }
         }
-
         console.log(url)
-
         try{
-            const response = await fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician')
+            const response = await fetch(url)
             const data = await response.json()
+            console.log(data['data'][0]['card_images'][0]['image_url'])
+            document.getElementById("Card_Image").src=data['data'][0]['card_images'][0]['image_url']
             console.log(data)
+            setValue("name", data['data'][0]['name'])
+            setValue("type", data['data'][0]['type'])
+            setValue("race", data['data'][0]['race'])
+            setValue("atk", data['data'][0]['atk'])
+            setValue("def", data['data'][0]['def'])
+            setValue("level", data['data'][0]['level'])
         } catch(error){
             console.log(error)
+            alert("No card matches your input. Please adjust your search criteria.")
+            document.getElementById("Card_Image").src="Yugioh_Card_Back.png"
+            reset()
         }
     }
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
             <input type="text" placeholder="Name" {...register("name")}/>
             <input type="text" placeholder="Type" {...register("type")}/>
             <input type="text" placeholder="Race" {...register("race")}/>
             <input type="number" placeholder="Attack" {...register("atk")}/>
             <input type="number" placeholder="Defense" {...register("def")}/>
-            <input type="number" placeholder="Level" {...register("lev")}/>
+            <input type="number" placeholder="Level" {...register("level")}/>
             <input type="submit"/>
+            <input type="reset"/>
         </form>
     )
 }
