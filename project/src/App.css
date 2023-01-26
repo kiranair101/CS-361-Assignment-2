@@ -19,6 +19,7 @@ main {
 
 footer {
   color: white;
+  padding: 1rem;
 }
 
 h2 {
@@ -47,9 +48,25 @@ form {
   gap: 2rem;
 }
 
+#price-table{
+  color: hsl(256, 27%, 39%);
+  background-color: white;
+  border: solid;
+  border-color: white;
+  margin: 1rem;
+}
+
 .arrow-icon{
   color: white;
   padding: 1rem;
+}
+
+.arrow-icon:hover{
+  color: hsl(39, 76%, 54%);
+}
+
+.counter{
+  color: white;
 }
 
 .grid-container {

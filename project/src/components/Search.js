@@ -1,10 +1,22 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import { json } from 'react-router-dom';
-
+import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs'
+import { useState, useEffect } from 'react';
+import Counter from './Counter'
 
 export default function Search(){
     const {register, handleSubmit, reset, setValue} = useForm()
+
+    const [totalImages, setTotalImages] = useState([]);
+    const [imageNumber, setImageNumber] = useState([])
+
+    let data = {}
+    let card_number = 0
+    let total_cards = 0
+
+    let images = {}
+    let image_number = 0
+    let total_images = 0
     
     const onReset = async () => {
         document.getElementById("Card_Image").src="Yugioh_Card_Back.png"
@@ -33,6 +45,50 @@ export default function Search(){
 
     const displayImage = async (data, index, image_index) => {
         document.getElementById("Card_Image").src=data['data'][index]['card_images'][image_index]['image_url']
+        images = data['data'][index]['card_images']
+        total_images = images.length
+        setTotalImages(totalImages)
+        // console.log(total_images)
+    }
+
+    const nextCard = async () => {
+        try{
+            card_number += 1
+            image_number = 0
+            await displayImage(data, card_number, image_number)
+            await displayData(data, card_number)
+        } catch(error){
+            alert("No more cards!")
+        }
+    }
+
+    const previousCard = async () => {
+        try{
+            card_number -= 1
+            image_number = 0
+            await displayImage(data, card_number, image_number)
+            await displayData(data, card_number)
+        } catch(error){
+            alert("No more cards!")
+        }
+    }    
+
+    const nextImage = async () => {
+        try{
+            image_number += 1
+            document.getElementById("Card_Image").src=images[image_number]['image_url']
+        }catch(error){
+            alert("No more images!")
+        }
+    }
+
+    const previousImage = async () => {
+        try{
+            image_number -= 1
+            document.getElementById("Card_Image").src=images[image_number]['image_url']
+        }catch(error){
+            alert("No more images!")
+        }
     }
 
     const onSubmit = async (formValues) => {
@@ -49,7 +105,7 @@ export default function Search(){
         // Send the GET request to the Yu-Gi-Oh! API. 
         try{
             const response = await fetch(url)
-            const data = await response.json()
+            data = await response.json()
             console.log(data)
             
             await displayImage(data, 0, 0)
@@ -65,6 +121,7 @@ export default function Search(){
     }
 
     return(
+        <div className='grid-container'>
         <form onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
             <input type="text" placeholder="Name" {...register("name")}/>
             <input type="number" placeholder="Level" {...register("level")}/>
@@ -123,5 +180,30 @@ export default function Search(){
             <input type="submit"/>
             <input type="reset"/>
         </form>
+        <div className="flip-card">
+            <div className="flip-card-inner">
+                <div className="flip-card-front">
+                    <img id="Card_Image" src="Yugioh_Card_Back.png" alt="Yugioh Card Back"></img>
+                </div>
+                <div className="flip-card-back">
+                    <img id="Card_Image" src="Yugioh_Card_Back.png" alt="Yugioh Card Back"></img>
+                </div>
+            </div>
+        </div>
+        <div>
+            <BsFillArrowLeftSquareFill size = "2rem" className = "arrow-icon" onClick = {previousCard}/>
+            <BsFillArrowRightSquareFill size = "2rem" className = "arrow-icon" onClick = {nextCard}/>                
+        </div>
+        <div>
+            <BsFillArrowLeftSquareFill size = "2rem" className = "arrow-icon" onClick = {previousImage}/>
+            <BsFillArrowRightSquareFill size = "2rem" className = "arrow-icon" onClick = {nextImage}/>
+        </div>
+        <div>
+            <Counter total={6}/>
+        </div>
+        <div>
+            <Counter total={6}/>
+        </div>
+    </div>
     )
 }

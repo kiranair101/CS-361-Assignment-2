@@ -15,8 +15,8 @@ function App() {
           <Navigation/>
             <Routes>
               <Route path="/" element={<HomePage/>}></Route>
-              <Route path="/about" element={ <AboutPage/>}></Route>
-              <Route path="/search" element={ <SearchPage/>}></Route>
+              <Route path="/about" element={<AboutPage/>}></Route>
+              <Route path="/search" element={<SearchPage/>}></Route>
             </Routes>
         </Router>
       </header>
