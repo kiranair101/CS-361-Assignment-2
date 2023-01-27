@@ -183,8 +183,8 @@ export default function Search(){
             <input type="text" placeholder="Archetype" {...register("archetype")}/>
             <input type="number" placeholder="Attack" {...register("atk")}/>
             <input type="number" placeholder="Defense" {...register("def")}/>
-            <input type="submit"/>
-            <input type="reset"/>
+            <input id = "submit-button" type="submit"/>
+            <input id = "reset-button" type="reset"/>
         </form>
         <div className="flip-card">
             <div className="flip-card-inner">
