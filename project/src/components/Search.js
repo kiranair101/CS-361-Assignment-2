@@ -2,7 +2,6 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs'
 import { useState, useEffect } from 'react';
-import Counter from './Counter'
 
 export default function Search(){
     const {register, handleSubmit, reset, setValue} = useForm()
@@ -20,6 +19,9 @@ export default function Search(){
     
     const onReset = async () => {
         document.getElementById("Card_Image").src="Yugioh_Card_Back.png"
+        document.getElementById("image_counter").innerHTML = ""
+        document.getElementById("card_counter").innerHTML = ""
+        document.getElementById("price").innerHTML = ""
         reset({
             name: "",
             type: "",
@@ -41,14 +43,16 @@ export default function Search(){
         setValue("level", data['data'][index]['level'])
         setValue("attribute", data['data'][index]['attribute'])
         setValue("archetype", data['data'][index]['archetype'])
+
+        document.getElementById("price").innerHTML = `Cheapest Price: $${data['data'][index]['card_prices'][0]['tcgplayer_price']}`
+        document.getElementById("card_counter").innerHTML = `${index + 1} / ${data['data'].length}`
     }
 
     const displayImage = async (data, index, image_index) => {
         document.getElementById("Card_Image").src=data['data'][index]['card_images'][image_index]['image_url']
         images = data['data'][index]['card_images']
         total_images = images.length
-        setTotalImages(totalImages)
-        // console.log(total_images)
+        document.getElementById("image_counter").innerHTML = `${image_index + 1} / ${total_images}`
     }
 
     const nextCard = async () => {
@@ -77,6 +81,7 @@ export default function Search(){
         try{
             image_number += 1
             document.getElementById("Card_Image").src=images[image_number]['image_url']
+            document.getElementById("image_counter").innerHTML = `${image_number + 1} / ${total_images}`
         }catch(error){
             alert("No more images!")
         }
@@ -86,6 +91,7 @@ export default function Search(){
         try{
             image_number -= 1
             document.getElementById("Card_Image").src=images[image_number]['image_url']
+            document.getElementById("image_counter").innerHTML = `${image_number + 1} / ${total_images}`
         }catch(error){
             alert("No more images!")
         }
@@ -199,10 +205,10 @@ export default function Search(){
             <BsFillArrowRightSquareFill size = "2rem" className = "arrow-icon" onClick = {nextImage}/>
         </div>
         <div>
-            <Counter total={6}/>
+            <div id="card_counter"></div>
         </div>
         <div>
-            <Counter total={6}/>
+            <div id="image_counter"></div>
         </div>
     </div>
     )

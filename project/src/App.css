@@ -6,7 +6,7 @@
 body {
   margin: 0;
   background-color: hsl(256, 27%, 39%);
-  color: #333;
+  color: white;
   font: 100% / normal sans-serif;
 }
 
@@ -54,6 +54,16 @@ form {
   border: solid;
   border-color: white;
   margin: 1rem;
+}
+
+#card_counter, #image_counter {
+  color: white;
+}
+
+#price{
+  color: hsl(256, 27%, 39%);
+  padding: 1rem;
+  background-color: white;
 }
 
 .arrow-icon{

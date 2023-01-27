@@ -8,7 +8,7 @@ export default function SearchPage(){
             Search Page
         </h2>
         <Search/>
-
+        <div id = "price"></div>
     </>
     )
 }
