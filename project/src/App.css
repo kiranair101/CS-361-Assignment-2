@@ -48,6 +48,48 @@ form {
   gap: 2rem;
 }
 
+figure{
+  background-color: white;
+  color:hsl(256, 27%, 39%);
+  padding: 1rem;
+  margin-top: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+dt{
+  font-weight: bold;
+}
+
+dd{
+  margin-bottom: 1rem;
+}
+
+#about-figure{
+  text-align:left;
+  padding-left: 5rem;
+}
+
+#random-link{
+  color:white;
+}
+
+#random-link:hover{
+  color:hsl(39, 76%, 54%);
+}
+
+#description-paragraph{
+  color: hsl(256, 27%, 39%);
+  background-color: white;
+  padding: 2rem;
+}
+
+#logo{
+  position: absolute;
+  left: 2.5rem;
+  top: 2.5rem;
+}
+
 #price-table{
   color: hsl(256, 27%, 39%);
   background-color: white;
@@ -69,6 +111,7 @@ form {
 #submit-button{
   background-color: white;
   border: solid;
+  font-weight: bold;
 }
 
 #submit-button:hover{
@@ -78,6 +121,7 @@ form {
 #reset-button{
   background-color: white;
   border: solid;
+  font-weight: bold;
 }
 
 #reset-button:hover{
@@ -97,6 +141,18 @@ select{
   background-color: white;
   border: solid;
   -webkit-appearance: none;
+}
+
+.App-header{
+  padding: 2rem;
+}
+
+.nav-route{
+  color: hsl(256, 27%, 39%);
+}
+
+.nav-route:hover{
+  color: hsl(39, 76%, 54%);
 }
 
 .arrow-icon{

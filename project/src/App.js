@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage'
 function App() {
   return (
     <div className="App">
+      <img id="logo" src={"favicon.ico"} width="85" height="85"></img>
       <header className="App-header">
         <Router>
           <Navigation/>

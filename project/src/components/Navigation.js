@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 function Navigation() {
   return (
     <nav className="Navigation">
-       <Link to="/">Home</Link>
-       <Link to="/about">About</Link>
-       <Link to="/search">Search</Link>
+       <Link className="nav-route" to="/">Home</Link>
+       <Link className="nav-route" to="/about">About</Link>
+       <Link className="nav-route" to="/search">Search</Link>
     </nav>
   );
 }
