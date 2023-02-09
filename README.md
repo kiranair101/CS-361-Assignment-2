@@ -13,3 +13,5 @@ Receive:
 - If the text file contains information, the microservice will act on it.
 - The microservice will then write the paths to the images that correspond to the 
   exercises written to pipeline.txt, which can then be used by the requester.
+
+  ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
