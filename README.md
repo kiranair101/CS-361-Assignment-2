@@ -1,6 +1,5 @@
 # CS-361-Assignment-1
-CS 361 Assignment 1
-
+Eli Kurlbaum
 
 # Communication Contract: Microservice Implemented for Partner
 Request:
