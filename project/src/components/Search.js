@@ -16,7 +16,7 @@ export default function Search(){
     let images = {}
     let image_number = 0
     let total_images = 0
-    
+
     const onReset = async () => {
         document.getElementById("Card_Image").src="Yugioh_Card_Back.png"
         document.getElementById("image_counter").innerHTML = ""
@@ -126,6 +126,28 @@ export default function Search(){
         }
     }
 
+    const getRandomCard = async (e) => {
+        e.preventDefault()
+        const response = await fetch('/randomcard', {method: 'GET'})
+        data = await response.json()
+        console.log(data)
+
+        await displayImage(data, 0, 0)
+        
+        await displayData(data, 0)
+    }
+
+    const getRandomDeck = async (e) => {
+        e.preventDefault()
+        const response = await fetch('/randomdeck', {method: 'GET'})
+        data = await response.json()
+        console.log(data)
+
+        await displayImage(data, 0, 0)
+        
+        await displayData(data, 0)
+    }
+
     return(
         <div className='grid-container'>
         <form onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
@@ -185,6 +207,8 @@ export default function Search(){
             <input type="number" placeholder="Defense" {...register("def")}/>
             <input id = "submit-button" type="submit"/>
             <input id = "reset-button" type="reset"/>
+            <input id = "submit-button" type="button" value = "Random Card" onClick={getRandomCard}/>
+            <input id = "submit-button" type="button" value = "Random Deck" onClick={getRandomDeck}/>
         </form>
         <div className="flip-card">
             <div className="flip-card-inner">
