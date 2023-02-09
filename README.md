@@ -14,4 +14,4 @@ Receive:
 - The microservice will then write the paths to the images that correspond to the 
   exercises written to pipeline.txt, which can then be used by the requester.
 
-  ![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+  ![alt text](https://github.com/elikurlbaum/CS-361-Assignment-1/blob/main/kiran/Microservice%20UML.png)
